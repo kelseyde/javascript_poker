@@ -1,0 +1,16 @@
+{
+  "name": "javascript_poker",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha specs"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.16.2",
+    "mocha": "^4.0.1",
+    "webpack": "^3.8.1"
+  }
+}
