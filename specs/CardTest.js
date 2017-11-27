@@ -9,7 +9,6 @@ describe("Card", function() {
 
   beforeEach(function() {
     card = new Card(Suits.HEARTS, Ranks.ACE);
-    console.log(card);
   });
 
   it("should have a suit", function() {
