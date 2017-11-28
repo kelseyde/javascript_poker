@@ -64,7 +64,7 @@ var PokerHandEvaluator = {
       if (cardCount === howMany) {
         var kindArray = [];
         hand.forEach(function(card) {
-          if (card.rank === key) {
+          if (card.rank === parseInt(key)) {
             kindArray.push(card);
           }
         })
@@ -141,8 +141,26 @@ var PokerHandEvaluator = {
     return flush;
   },
 
-  fullHouse: function() {
+  fullHouse: function(hand) {
     var fullHouse = [];
+    var handCopy = hand;
+    var threeOfAKinds = this.howManyOfKind(3, handCopy);
+    console.log(handCopy);
+    console.log(threeOfAKinds);
+    for (var threeOfAKind of threeOfAKinds) {
+      if (!threeOfAKind.length === 0) {
+        for (var card of threeOfAKind) {
+          var indexInHand = handCopy.indexOf(card);
+          handCopy.splice(indexInHand, 1);
+        }
+        var twoOfAKinds = this.howManyOfKind(2, handCopy);
+        if (!twoOfAKinds.length === 0) {
+          fullHouse.push(threeOfAKind);
+          fullHouse.push(twoOfAKinds[0]);
+        }
+      }
+    }
+    return fullHouse;
   }
   // public ArrayList<Card> fullHouse(ArrayList<Card> hand) {
   //     ArrayList<Card> fullHouse = new ArrayList<>();

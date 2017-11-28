@@ -29,7 +29,7 @@ describe("PokerHandEvaluator", function() {
     var twoPairs = evaluator.howManyOfKind(2, [new Card(Suits.HEARTS, Ranks.ACE),
     new Card(Suits.SPADES, Ranks.ACE), new Card(Suits.DIAMONDS, Ranks.THREE), new
     Card(Suits.CLUBS, Ranks.THREE)]);
-    assert.strictEqual(2, twoPairs.length);
+    assert.strictEqual(2, twoPairs[1].length);
   });
 
   it("should return zero three of a kind", function() {
@@ -40,8 +40,9 @@ describe("PokerHandEvaluator", function() {
 
   it("should return one three of a kind", function() {
     var threeOfAKinds = evaluator.howManyOfKind(3, [new Card(Suits.HEARTS, Ranks.ACE),
-    new Card(Suits.SPADES, Ranks.ACE), new Card(Suits.DIAMONDS, Ranks.ACE)]);
-    assert.strictEqual(1, threeOfAKinds.length);
+    new Card(Suits.SPADES, Ranks.ACE), new Card(Suits.DIAMONDS, Ranks.ACE), new
+    Card(Suits.CLUBS, Ranks.THREE)]);
+    assert.strictEqual(3, threeOfAKinds[0].length);
   });
 
   it("should return two three of a kinds", function() {
