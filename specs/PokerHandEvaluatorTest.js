@@ -125,4 +125,58 @@ describe("PokerHandEvaluator", function() {
     assert.strictEqual(5, fullHouse.length);
   });
 
+  it("should return no four of a kind", function() {
+    var fourOfAKinds = evaluator.howManyOfKind(4, [new Card(Suits.HEARTS, Ranks.ACE),
+    new Card(Suits.SPADES, Ranks.ACE), new Card(Suits.DIAMONDS, Ranks.ACE), new
+    Card(Suits.CLUBS, Ranks.THREE)]);
+    assert.strictEqual(0, fourOfAKinds.length);
+  });
+
+  it("should return one four of a kind", function() {
+    var fourOfAKinds = evaluator.howManyOfKind(4, [new Card(Suits.HEARTS, Ranks.ACE),
+    new Card(Suits.SPADES, Ranks.ACE), new Card(Suits.DIAMONDS, Ranks.ACE), new
+    Card(Suits.CLUBS, Ranks.THREE), new Card(Suits.DIAMONDS, Ranks.ACE)]);
+    assert.strictEqual(4, fourOfAKinds[0].length);
+  });
+
+  it("should return no straight flush", function() {
+    var straightFlush = evaluator.straightFlush([new Card(Suits.HEARTS, Ranks.ACE),
+    new Card(Suits.SPADES, Ranks.ACE), new Card(Suits.DIAMONDS, Ranks.ACE), new
+    Card(Suits.CLUBS, Ranks.THREE), new Card(Suits.DIAMONDS, Ranks.ACE)]);
+    assert.strictEqual(0, straightFlush.length);
+  });
+
+  it("should return straight flush", function() {
+    var straightFlush = evaluator.straightFlush([new Card(Suits.HEARTS, Ranks.SEVEN),
+    new Card(Suits.HEARTS, Ranks.EIGHT), new Card(Suits.HEARTS, Ranks.NINE), new
+    Card(Suits.HEARTS, Ranks.TEN), new Card(Suits.HEARTS, Ranks.JACK)]);
+    assert.strictEqual(5, straightFlush.length);
+  });
+
+  it("should return no royal flush", function() {
+    var royalFlush = evaluator.royalFlush([new Card(Suits.HEARTS, Ranks.SEVEN),
+    new Card(Suits.HEARTS, Ranks.EIGHT), new Card(Suits.HEARTS, Ranks.NINE), new
+    Card(Suits.HEARTS, Ranks.TEN), new Card(Suits.HEARTS, Ranks.JACK)]);
+    assert.strictEqual(0, royalFlush.length);
+  });
+
+  it("should return royal flush", function() {
+    var royalFlush = evaluator.royalFlush([new Card(Suits.HEARTS, Ranks.TEN),
+    new Card(Suits.HEARTS, Ranks.JACK), new Card(Suits.HEARTS, Ranks.QUEEN), new
+    Card(Suits.HEARTS, Ranks.KING), new Card(Suits.HEARTS, Ranks.ACE), new
+    Card(Suits.DIAMONDS, Ranks.THREE)]);
+    assert.strictEqual(5, royalFlush.length);
+  });
+
+  it("should return high card", function() {
+    var highCard = evaluator.highCard([new Card(Suits.HEARTS, Ranks.TWO),
+    new Card(Suits.SPADES, Ranks.TWO), new Card(Suits.DIAMONDS, Ranks.THREE), new
+    Card(Suits.DIAMONDS, Ranks.FOUR), new Card(Suits.HEARTS, Ranks.JACK), new
+    Card(Suits.CLUBS, Ranks.FIVE)])
+    assert.strictEqual(Ranks.JACK, highCard.rank);
+    assert.strictEqual(Suits.HEARTS, highCard.suit);
+  });
+
+
+
 });
